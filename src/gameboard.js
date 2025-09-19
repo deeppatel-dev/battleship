@@ -72,6 +72,10 @@ class Gameboard {
     }
     return true;
   }
+
+  getBoard() {
+    return this.board;
+  }
 }
 
 export { Gameboard };
