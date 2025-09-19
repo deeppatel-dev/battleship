@@ -45,6 +45,33 @@ class Gameboard {
 
     return true;
   }
+
+  receiveAttack(x, y) {
+    if (x >= 10 || y >= 10 || x < 0 || y < 0) {
+      return false;
+    }
+
+    let target = this.board[y][x];
+
+    if (target === "water") {
+      this.board[y][x] = "missed";
+    } else if (target instanceof Ship) {
+      target.hit();
+      this.board[y][x] = "hit";
+      return true;
+    }
+  }
+
+  areAllSunk() {
+    for (let row of this.board) {
+      for (let element of row) {
+        if (element instanceof Ship && !element.isSunk()) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 }
 
 export { Gameboard };
