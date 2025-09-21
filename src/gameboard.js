@@ -5,6 +5,14 @@ class Gameboard {
       .fill(null)
       .map(() => Array(10).fill("water"));
   }
+
+  reset() {
+    for (let y = 0; y < 10; y++) {
+      for (let x = 0; x < 10; x++) {
+        this.board[y][x] = "water";
+      }
+    }
+  }
   placeShip(x, y, placement, ship) {
     const length = ship.length;
 

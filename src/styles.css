@@ -73,6 +73,6 @@ button {
   background-color: red;
 }
 
-.cell.miss {
+.cell.missed {
   background-color: white;
 }
