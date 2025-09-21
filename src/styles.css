@@ -69,10 +69,21 @@ button {
   background-color: gray;
 }
 
-.cell.hit {
+.cell.hit::after,
+.cell.missed::after {
+  content: "";
+  display: block;
+  width: 12.5px;
+  height: 12.5px;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 6.25px;
+}
+
+.cell.hit::after {
   background-color: red;
 }
 
-.cell.missed {
+.cell.missed::after {
   background-color: white;
 }
