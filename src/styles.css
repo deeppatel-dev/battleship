@@ -2,4 +2,77 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --bg: #1e1e2f;
+  --text: #f0f0f0;
+  --accent: #4f8cff;
+  --border: #444457;
+  --board-bg: #234249;
+  --water: #3b4bf6;
+}
+
+body {
+  text-align: center;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+button {
+  background-color: var(--accent);
+  color: var(--text);
+  padding: 0.3rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+}
+
+.boards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 2rem;
+}
+
+.boards p {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 25px);
+  grid-template-rows: repeat(10, 25px);
+  gap: 1.5px;
+  padding: 5px;
+  background-color: var(--board-bg);
+  border: 4px solid var(--border);
+}
+
+.cell {
+  width: 25px;
+  height: 25px;
+  background-color: var(--water);
+  border: 1px solid white;
+}
+
+.cell:hover {
+  border: 2px dashed yellow;
+}
+
+.cell.ship {
+  background-color: gray;
+}
+
+.cell.hit {
+  background-color: red;
+}
+
+.cell.miss {
+  background-color: white;
 }

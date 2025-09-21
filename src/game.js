@@ -1,3 +1,4 @@
+import { renderBoard } from "./dom";
 import { Gameboard } from "./gameboard";
 import { Player } from "./player";
 import { Ship } from "./ship";
@@ -12,6 +13,12 @@ function startGame() {
   placeShips(computerBoard);
   console.log(playerBoard.board);
   console.log(computerBoard.board);
+
+  const playerContainer = document.querySelector("#player");
+  const computerContainer = document.querySelector("#computer");
+
+  renderBoard(playerBoard.board, playerContainer, true);
+  renderBoard(computerBoard.board, computerContainer, false);
 }
 
 function placeShips(board) {
