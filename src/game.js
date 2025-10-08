@@ -7,6 +7,9 @@ function startGame() {
   let status = false;
   const computer = new Player();
   const player = new Player();
+  const modal = document.querySelector("#game-over-modal");
+  const modalMessage = document.querySelector("#game-over-message");
+  const modalNewGame = document.querySelector("#modal-new-game");
   console.log("Starting Game.");
 
   const playerBoard = player.board;
@@ -52,14 +55,19 @@ function startGame() {
   computerContainer.addEventListener("click", computerClickHandler);
   relocate.addEventListener("click", relocateHandler);
 
+  function showModal(message) {
+    modalMessage.textContent = message;
+    modal.classList.remove("hidden");
+  }
+
   function gameOver() {
     if (computerBoard.areAllSunk()) {
-      alert("You Win!");
+      showModal("You Win!");
       status = true;
       return true;
     }
     if (playerBoard.areAllSunk()) {
-      alert("You Lose!");
+      showModal("You Lose!");
       status = true;
       return true;
     }
