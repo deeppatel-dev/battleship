@@ -65,7 +65,7 @@ class Gameboard {
       this.board[y][x] = "missed";
     } else if (target instanceof Ship) {
       target.hit();
-      this.board[y][x] = "hit";
+      this.board[y][x] = { status: "hit", ship: target };
       return true;
     }
   }

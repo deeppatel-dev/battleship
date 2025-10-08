@@ -70,7 +70,8 @@ button {
 }
 
 .cell.hit::after,
-.cell.missed::after {
+.cell.missed::after,
+.cell.sunk::after {
   content: "";
   display: block;
   width: 12.5px;
@@ -86,6 +87,10 @@ button {
 
 .cell.missed::after {
   background-color: white;
+}
+
+.cell.sunk::after {
+  background-color: limegreen;
 }
 
 button#new-game {

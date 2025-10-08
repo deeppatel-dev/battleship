@@ -11,10 +11,14 @@ function renderBoard(board, container, isPlayer) {
       cell.dataset.x = x;
       cell.dataset.y = y;
 
-      if (item === "hit") {
-        cell.classList.add("hit");
-      } else if (item === "missed") {
+      if (item === "missed") {
         cell.classList.add("missed");
+      } else if (typeof item === "object" && item?.status === "hit") {
+        if (item.ship.isSunk()) {
+          cell.classList.add("sunk");
+        } else {
+          cell.classList.add("hit");
+        }
       } else if (isPlayer && item instanceof Ship) {
         cell.classList.add("ship");
       }
