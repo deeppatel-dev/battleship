@@ -87,3 +87,7 @@ button {
 .cell.missed::after {
   background-color: white;
 }
+
+button#new-game {
+  margin-left: 10px;
+}

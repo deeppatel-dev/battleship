@@ -8,21 +8,20 @@ function startGame() {
   const computer = new Player();
   const player = new Player();
   console.log("Starting Game.");
+
   const playerBoard = player.board;
   const computerBoard = computer.board;
   placeShips(playerBoard);
   placeShips(computerBoard);
-  console.log(playerBoard.board);
-  console.log(computerBoard.board);
 
   const playerContainer = document.querySelector("#player");
   const computerContainer = document.querySelector("#computer");
-  const relocate = document.querySelector("button");
+  const relocate = document.querySelector("#randomize");
 
   renderBoard(playerBoard.board, playerContainer, true);
   renderBoard(computerBoard.board, computerContainer, false);
 
-  computerContainer.addEventListener("click", (e) => {
+  const computerClickHandler = (e) => {
     if (status) return;
 
     relocate.disabled = true;
@@ -33,7 +32,7 @@ function startGame() {
 
     const item = computerBoard.board[y][x];
 
-    if (item === "hit" || item === "miss") return;
+    if (item === "hit" || item === "missed") return;
 
     computerBoard.receiveAttack(x, y);
 
@@ -42,13 +41,16 @@ function startGame() {
     if (gameOver()) return;
 
     computerMove();
-  });
+  };
 
-  relocate.addEventListener("click", () => {
+  const relocateHandler = () => {
     playerBoard.reset();
     placeShips(playerBoard);
     renderBoard(playerBoard.board, playerContainer, true);
-  });
+  };
+
+  computerContainer.addEventListener("click", computerClickHandler);
+  relocate.addEventListener("click", relocateHandler);
 
   function gameOver() {
     if (computerBoard.areAllSunk()) {
@@ -66,11 +68,17 @@ function startGame() {
   }
 
   function computerMove() {
-    const [x, y] = computer.getRandomMove(playerBoard.board);
+    const [y, x] = computer.getRandomMove(playerBoard.board);
     player.board.receiveAttack(x, y);
     renderBoard(playerBoard.board, playerContainer, true);
     gameOver();
   }
+
+  return () => {
+    computerContainer.removeEventListener("click", computerClickHandler);
+    relocate.removeEventListener("click", relocateHandler);
+    relocate.disabled = false;
+  };
 }
 
 function placeShips(board) {
